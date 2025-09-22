@@ -1,6 +1,8 @@
 
 object pepita {
 	var energia = 100
+	var property position = game.origin()
+	var property image = "pepita.png"
 
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
@@ -13,6 +15,6 @@ object pepita {
 	method energia() {
 		return energia
 	}
-
+	
 }
 
