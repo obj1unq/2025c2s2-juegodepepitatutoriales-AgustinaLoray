@@ -18,12 +18,17 @@ object pepita {
 	}
 
 	method image() {
-		if (nido.position() == pepita.position())
-			{return "pepita-grande.png"}
-		else if (silvestre.position() == pepita.position())
-			{return "pepita-gris.png"}
-		else
-			{return "pepita.png"}
+	
+	if (nido.position() == pepita.position())
+		{return "pepita-grande.png"}
+	else if (silvestre.position() == pepita.position())
+		{return "pepita-gris.png"}
+	else
+		{return "pepita.png"}
+	}
+
+	method mover(direccion) {
+	  position = direccion.siguiente(position)
 	}
 	
 }
