@@ -28,7 +28,6 @@ program pepitaGame {
 	keyboard.up().onPressDo({pepita.mover(arriba)})
 	keyboard.down().onPressDo({pepita.mover(abajo)})
 	game.onTick(800, "gravedad", {pepita.gravedad()})
-	game.onCollideDo(pepita,{objeto => pepita.chocaCon(objeto)})
 
 	game.start()	
 	

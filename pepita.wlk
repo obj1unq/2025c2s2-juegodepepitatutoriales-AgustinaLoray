@@ -7,21 +7,6 @@ object pepita {
 	var energia = 500
 	var property position = game.at(0,3)
 
-	method position() {
-		return game.at(self.posX(), self.posY())
-	}
-
-	method posX() {
-		const posX = position.x().max(0)
-		return posX.min(game.width()-1)
-	}
-
-	method posY() {
-		const posY = position.y().max(0)
-		return posY.min(game.height()-1)
-	  
-	}
-
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
 	}
@@ -35,7 +20,6 @@ object pepita {
 	}
 
 	method image() {
-	
 	if (nido.position() == self.position())
 		{return "pepita-grande.png"}
 	else if (silvestre.position() == self.position())
@@ -53,26 +37,20 @@ object pepita {
 
 	method moverSiPuedeA(direccion) {
 		const otrosObjetos = game.getObjectsIn(direccion.siguiente(position))
-		if (otrosObjetos.isEmpty() && direccion.limiteDelTablero())
-			{position= direccion.siguiente()
+		if (otrosObjetos.isEmpty() and direccion.hayTablero(position, 10, 10))
+			{position = direccion.siguiente(position)
 			energia = 0.max(energia - 9)}
 	  
 	}
 
 	method validarPoderMoverme() {
 		if (energia <= 0)
-			{self.error("No puedo moverme, no tengo mas energia")}
+			{self.error ("No puedo moverme, no tengo mas energia")}
 	}
 
 	method gravedad() {
-		position = position.down(1)
-	  
+		self.moverSiPuedeA(abajo)
 	}
 
-	method chocaCon(obejto) {
-		
-
-
-	}
 }
 
