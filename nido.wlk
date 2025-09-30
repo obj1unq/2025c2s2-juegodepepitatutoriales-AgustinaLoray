@@ -4,4 +4,6 @@ object nido {
     method image() {
         return "nido.png"
     }
+
+  
 }

@@ -2,10 +2,52 @@ import extras.*
 import nido.*
 import silvestre.*
 
-
 object pepita {
 	var energia = 500
 	var property position = game.at(0,3)
+	var posAntigua = null
+
+	method position(){
+		return game.at(self.posX(), self.posY())
+	}
+
+	method posX() {
+		const posX = position.x().max(0)
+		return posX.min(game.width()-1)
+	}
+
+	method posY() {
+		const posY = position.y().max(0)
+		return posY.min(game.height()-1)
+	}
+
+	method moverArriba() {
+		self.validarPoderMoverme()
+		posAntigua = position
+		position = game.at(self.posX(), self.posY()).up(1)
+		energia -= 9
+	}
+
+	method moverAbajo() {
+		self.validarPoderMoverme()
+		posAntigua = position
+		position = game.at(self.posX(), self.posY()).down(1)
+		energia -= 9
+	}
+
+	method moverIzquierda() {
+		self.validarPoderMoverme()
+		posAntigua = position
+		position = game.at(self.posX(), self.posY()).left(1)
+		energia -= 9
+	}
+
+	method moverDerecha() {
+		self.validarPoderMoverme()
+		posAntigua = position
+		position = game.at(self.posX(), self.posY()).right(1)
+		energia -= 9
+	}
 
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
@@ -30,26 +72,20 @@ object pepita {
 		{return "pepita.png"}
 	}
 
-	method mover(direccion) {
-		self.validarPoderMoverme()
-		self.moverSiPuedeA(direccion)
-	}
-
-	method moverSiPuedeA(direccion) {
-		const otrosObjetos = game.getObjectsIn(direccion.siguiente(position))
-		if (otrosObjetos.isEmpty() and direccion.hayTablero(position, 10, 10))
-			{position = direccion.siguiente(position)
-			energia = 0.max(energia - 9)}
-	  
-	}
-
 	method validarPoderMoverme() {
-		if (energia <= 0)
-			{self.error ("No puedo moverme, no tengo mas energia")}
+		if (energia < 9 )
+		{self.error ("No tengo suficiente energia")}
+				
 	}
 
 	method gravedad() {
-		self.moverSiPuedeA(abajo)
+		posAntigua = position
+		position = position.down(1)
+	}
+
+	method noPuedoAvanzar() {
+		position = posAntigua
+	  
 	}
 
 }
