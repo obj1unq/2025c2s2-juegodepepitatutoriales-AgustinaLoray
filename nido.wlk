@@ -5,5 +5,8 @@ object nido {
         return "nido.png"
     }
 
-  
+    method chocoCon(objeto) {
+        objeto.ganar()
+      
+    }
 }

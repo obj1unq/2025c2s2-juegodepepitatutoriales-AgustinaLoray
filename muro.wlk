@@ -7,7 +7,7 @@ object muro {
         return "muro.png"
     }
 
-    method colisionoCon(objeto) {
+    method chocoCon(objeto) {
         objeto.noPuedoAvanzar()
       
     }

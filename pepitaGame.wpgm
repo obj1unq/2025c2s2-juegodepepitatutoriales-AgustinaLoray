@@ -5,6 +5,7 @@ import nido.*
 import silvestre.*
 import energiaPepita.*
 import muro.*
+import comidas.*
 
 program pepitaGame {
 	game.title("Pepita")
@@ -20,6 +21,8 @@ program pepitaGame {
 	game.addVisual(nido)
 	game.addVisual(silvestre)
 	game.addVisual(muro)
+	game.addVisual(manzana)
+	game.addVisual(alpiste)
 	game.addVisual(pepita)
 
 	//Mover pepita
@@ -30,7 +33,7 @@ program pepitaGame {
 	game.onTick(800, "gravedad", {pepita.gravedad()})
 
 	//Colision con otros objetos
-	game.onCollideDo(pepita, {otro => otro.colisionoCon(pepita)})
+	game.onCollideDo(pepita, {otro => otro.chocoCon(pepita)})
 
 	game.start()	
 	

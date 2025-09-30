@@ -7,8 +7,14 @@ object silvestre {
         return game.at(pepita.position().x().max(3), 2)
       
     }
+
     method image() {
       return "silvestre.png"
+    }
+
+    method chocoCon(objeto) {
+      objeto.perder()
+      
     }
 
 }

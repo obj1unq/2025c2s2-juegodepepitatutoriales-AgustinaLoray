@@ -51,6 +51,7 @@ object pepita {
 
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
+		game.removeVisual(comida)
 	}
 
 	method volar(kms) {
@@ -74,8 +75,7 @@ object pepita {
 
 	method validarPoderMoverme() {
 		if (energia < 9 )
-		{self.error ("No tengo suficiente energia")}
-				
+		{self.error ("No tengo suficiente energia")}		
 	}
 
 	method gravedad() {
@@ -85,6 +85,19 @@ object pepita {
 
 	method noPuedoAvanzar() {
 		position = posAntigua
+	}
+
+	method perder() {
+		game.say(self, "¡Perdí!")
+		game.removeTickEvent("gravedad")
+        game.schedule(2000, {game.stop()})
+	  
+	}
+
+	method ganar() {
+		game.say(self, "¡Gane!")
+		game.removeTickEvent("gravedad")
+        game.schedule(2000, {game.stop()})
 	  
 	}
 
